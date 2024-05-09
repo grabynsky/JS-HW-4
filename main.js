@@ -86,13 +86,21 @@ arrElement([123, 'asd', 456, 789, 'qwerty']);
 // - створити функцію яка приймає масив об'єктів з наступними полями id,name,age , та виводить їх в документ. Для кожного об'єкту окремий блок.
 
 function arrObject(objectsArray) {
-
+    // for (let object of objectsArray) {
+    //     document.write(`
+    //         <div>
+    //         <b>id:</b> ${object.id} <b>name:</b> ${object.name} <b>age:</b> ${object.age}
+    //         </div>
+    //         `);
+    // }
+    document.write(`<hr>`)
     for (let object of objectsArray) {
-        document.write(`
-        <div>
-        <b>id:</b> ${object.id} <b>name:</b> ${object.name} <b>age:</b> ${object.age}
-        </div>
-        `);
+        for (const objKey in object) {
+            document.write(`
+            <p><b>${objKey}:</b> ${object[objKey]}</p>
+            `);
+        }
+        document.write(`<hr>`)
     }
 }
 
