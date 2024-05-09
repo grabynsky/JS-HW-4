@@ -154,14 +154,31 @@ console.log('--------------------');
 // - Написати функцію обміну валюти exchange(sumUAH,currencyValues,exchangeCurrency)
 // Приклад exchange(10000,[{currency:'USD',value:40},{currency:'EUR',value:42}],'USD') // => 250
 
+// function exchange(sumUAH, currencyValues, exchangeCurrency) {
+//     for (let i = 0; i < currencyValues.length; i++) {
+//         if(currencyValues[i].currency === exchangeCurrency){
+//           return +(sumUAH / currencyValues[i].value).toFixed(0);
+//
+//         }
+//     }
+// }
 function exchange(sumUAH, currencyValues, exchangeCurrency) {
-    for (let i = 0; i < currencyValues.length; i++) {
-        if(currencyValues[i].currency === exchangeCurrency){
-          return +(sumUAH / currencyValues[i].value).toFixed(0);
 
+    if (!exchangeCurrency) {
+        return 'error-1'
+    }
+
+    for (let currencyValue of currencyValues) {
+        if (!currencyValue.currency || !currencyValue.value) {
+            return 'error-2'
+        }
+        if (currencyValue.currency === exchangeCurrency) {
+            return +(sumUAH / currencyValue.value).toFixed(0);
         }
     }
 }
 
 console.log(exchange(10000, [{currency: 'USD', value: 40}, {currency: 'EUR', value: 42}], 'EUR'));
 console.log(exchange(10000, [{currency: 'USD', value: 40}, {currency: 'EUR', value: 42}], 'USD'));
+console.log(exchange(10000, [{currency: '', value: 40}, {currency: 'EUR', value: 42}], 'USD'));
+console.log(exchange(10000, [{currency: 'USD', value: 40}, {currency: 'EUR', value: 42}], ''));
